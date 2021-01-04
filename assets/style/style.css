@@ -12,3 +12,8 @@ tr:nth-child(even) {
 .raceResult{
     margin-left: 55px;
 }
+
+#sidebar{
+    margin-left: -180px;
+    margin-top: -47px;
+}

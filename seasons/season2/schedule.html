@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
+  <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.css">
+  <link rel="stylesheet" href="../../assets/style/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+    crossorigin="anonymous"></script>
+
+
+  <title>Document</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">North American Racing League</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="constructorStandings.html">Constructor Standings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Practice Results</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="driverStats.html">Driver Stats</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="driverStandings.html">Driver Standings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="raceResults.html">Race Information</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="accContainer">
+    <div class="row">
+      <div class="col-md-4">
+        <nav id="sidebar">
+          <div class="p-4 pt-5">
+            <h5>Categories</h5>
+            <ul class="list-unstyled components mb-5">
+              <li>
+                <a href="#pageSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Race Information</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu1">
+                  <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> NARL Rulebook</a></li>
+                  <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Current Schedule</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Race Results</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu2">
+                  <li><a href="seasons/season1/season1Results/raceResults.html"><span class="fa fa-chevron-right mr-2"></span> Season 1</a></li>
+                  <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Season 2</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="col-md-8">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Track</th>
+                <th scope="col">Download Link</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1/17</th>
+                <td>Australia</td>
+                <td>
+                    <a target="_blank" href="https://assettocorsa.club/mods/tracks/melbourne-grand-prix-circuit.html">Download</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">1/24</th>
+                <td>Bahrain</td>
+                <td>
+                    <a target="_blank" href="https://assettocorsa.club/mods/tracks/melbourne-grand-prix-circuit.html">Download</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">1/31</th>
+                <td>China</td>
+                <td>
+                    <a target="_blank" href="https://www.racedepartment.com/downloads/shanghai-tianma-circuit.12904/">Download</a>     
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">2/7</th>
+                <td>TBD</td>
+                <td>
+                    <a  href="#">Download</a>     
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">2/14</th>
+                <td>Spain</td>
+                <td>
+                    <a target="_blank" href="https://www.racedepartment.com/downloads/circuit-de-catalunya.3328/">Download</a>     
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">2/21</th>
+                <td>Monaco</td>
+                <td>
+                    <a target="_blank" href="https://assettocorsa.club/mods/tracks/circuit-de-monaco.html">Download</a>     
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">2/28</th>
+                <td>Baku</td>
+                <td>
+                    <a  href="#">Download</a>     
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">3/7</th>
+                <td>Break</td>
+                <td>
+                       
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">3/14</th>
+                <td>Break</td>
+                <td>
+                       
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">3/21</th>
+                <td>Break</td>
+                <td>
+                       
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">3/28</th>
+                <td>Canada</td>
+                <td>
+                    <a target="_blank" href="https://www.racedepartment.com/downloads/circuit-gilles-villeneuve-montr%C3%A9al-qu%C3%A9bec-canada.4439/">Download</a>    
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">4/4</th>
+                <td>France</td>
+                <td>
+                    <a target="_blank" href="https://assettocorsa.club/mods/tracks/paul-ricard-httt.html">Download</a>    
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">4/11</th>
+                <td>Austria</td>
+                <td>
+                    Kunos (Red Pack)  
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">4/18</th>
+                <td>Silverstone</td>
+                <td>
+                    Kunos  
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">4/25</th>
+                <td>Hungary</td>
+                <td>
+                    <a target="_blank" href="https://assettocorsa.club/mods/tracks/hungaroring.html">Download</a>    
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">5/2</th>
+                <td>Spa</td>
+                <td>
+                    Kunos   
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">5/9
+                <td>Netherlands</td>
+                <td>
+                    <a target="_blank" href="https://www.racedepartment.com/downloads/zandvoort-f1-layout.31840/">Download</a>    
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">5/16</th>
+                <td>Monza</td>
+                <td>
+                    Kunos 
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">5/23</th>
+                <td>Russia</td>
+                <td>
+                    <a target="_blank" href="https://assettocorsa.club/mods/tracks/sochi-autodrom.html">Download</a>    
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">5/30</th>
+                <td>Singapore</td>
+                <td>
+                    <a target="_blank" href="https://assettocorsa.club/mods/tracks/marina-bay-street-circuit.html">Download</a>    
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">6/6</th>
+                <td>Singapore</td>
+                <td>
+                    <a target="_blank" href="https://assettocorsa.club/mods/tracks/suzuka-international-circuit.html">Download</a>    
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">6/13</th>
+                <td>USA</td>
+                <td>
+                    <a target="_blank" href="https://assettocorsa.club/mods/tracks/circuit-of-the-americas.html">Download</a>    
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">6/20</th>
+                <td>Mexico</td>
+                <td>
+                    <a target="_blank" href="https://assettomods.wixsite.com/assettomods/single-post/mexico">Download</a>    
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">6/27</th>
+                <td>Brazil</td>
+                <td>
+                    <a target="_blank" href="https://www.racedepartment.com/downloads/hd-track-update-series-sao-paulo-brazil.1259/">Download</a>    
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">7/4</th>
+                <td>Break</td>
+                <td>
+                    
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">7/10</th>
+                <td>Abu Dabi</td>
+                <td>
+                    <a target="_blank" href="https://www.racedepartment.com/downloads/yas-marina-circuit.2696/">Download</a>    
+                </td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+  </div>
+
+
+  <script src="../../assets/js/bootstrap.min.js"></script>
+</body>
+
+</html>
