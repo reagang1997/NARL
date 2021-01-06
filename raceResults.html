@@ -80,8 +80,23 @@
       <div class="col-md-8">
         <div class="jumbotron jumbotron-fluid">
           <div class="container">
-            <h1 class="display-4">North American Racing League</h1>
-            <p class="lead">Welcome to the North American Racing League!</p>
+            <h1 class="display-4">This weeks Race:</h1>
+            <p class="lead">
+              <div style="margin-left: 20px;">
+                <div class="row">
+                  <div class="col-md-4" style="font-size: 15px;">
+                    Track: <span id="current-track"></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    Laps: <span id="current-laps"></span>
+                  </div>
+                </div>
+                
+              </div>
+              
+            </p>
           </div>
         </div>
       </div>
@@ -90,6 +105,7 @@
 
   <script src="popper.js"></script>
   <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/getSeasonWeek.js"></script>
 </body>
 
 </html>
