@@ -115,10 +115,7 @@ var currentEl = document.getElementById("current-track");
 
 
 
-var x = new Date();
 
-var day = x.getDate();
-console.log(day);
 
 if(day <= (17-6)){
     round = -1;
@@ -129,6 +126,10 @@ else{
     currentEl.textContent = season[round].name;
 }
 
+var x = new Date();
+
+var day = x.getDate();
+console.log(day);
 if(day === (season[round].day - 6)){
     round++
 }

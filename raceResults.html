@@ -17,7 +17,6 @@
     integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
     crossorigin="anonymous"></script>
 
-
   <title>Document</title>
 </head>
 
@@ -62,7 +61,7 @@
               <li>
                 <a href="#pageSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Race Information</a>
                 <ul class="collapse list-unstyled" id="pageSubmenu1">
-                  <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> NARL Rulebook</a></li>
+                  <li><a id="rulebook" href="#"><span class="fa fa-chevron-right mr-2"></span> NARL Rulebook</a></li>
                   <li><a href="seasons/season2/schedule.html"><span class="fa fa-chevron-right mr-2"></span> Current Schedule</a></li>
                 </ul>
               </li>
@@ -79,8 +78,8 @@
       </div>
       <div class="col-md-8">
         <div class="jumbotron jumbotron-fluid">
-          <div class="container">
-            <h1 class="display-4">This weeks Race:</h1>
+          <div id="jumbo" class="container">
+            <h1 id="heading" class="display-4">This weeks Race:</h1>
             <p class="lead">
               <div style="margin-left: 20px;">
                 <div class="row">
@@ -102,10 +101,12 @@
       </div>
     </div>
   </div>
-
+  
   <script src="popper.js"></script>
   <script src="assets/js/bootstrap.min.js"></script>
   <script src="assets/js/getSeasonWeek.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/js/rulebook.js" defer></script>
 </body>
 
 </html>
