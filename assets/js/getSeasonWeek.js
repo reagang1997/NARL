@@ -105,6 +105,10 @@ var season = [
     }
 ]
 
+var x = new Date();
+
+var day = x.getDate();
+
 if(localStorage.getItem('round')){
     var round = localStorage.getItem('round')
 }
@@ -126,9 +130,7 @@ else{
     currentEl.textContent = season[round].name;
 }
 
-var x = new Date();
 
-var day = x.getDate();
 console.log(day);
 if(day === (season[round].day - 6)){
     round++

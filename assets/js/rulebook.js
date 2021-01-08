@@ -1,9 +1,9 @@
 
 
-$(document).ready(function() {
-    var ruleBook = $("#rulebook").click(function(){
+$(document).ready(function () {
+    var ruleBook = $("#rulebook").click(function () {
         var $jumbo = $("#jumbo").empty();
-        var $heading = $(`
+        var $heading = $(/*html*/`
             <h1 class="display-4">NARL Rulebook</h1>
             <br>
             <h3>Defending</h3>
