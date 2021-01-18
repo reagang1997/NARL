@@ -17,3 +17,7 @@ tr:nth-child(even) {
     margin-left: -180px;
     margin-top: -47px;
 }
+
+img{
+    height: 500px;
+}
