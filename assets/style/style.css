@@ -21,3 +21,7 @@ tr:nth-child(even) {
 img{
     height: 500px;
 }
+
+#fastest-lap{
+    color: magenta;
+}
