@@ -31,6 +31,30 @@ img{
     margin-left: -25px;
 }
 
+.last-winner{
+    text-align: center;
+    border: 1px solid gray;
+    margin: 10px 10px;
+    width: 75%;
+    height: 200px;
+}
+
+.last-winner h2{
+    margin-top: 10px;
+}
+
+.last-winner img{
+    height: 100px
+}
+
+#name{
+    margin-top: 25px;
+}
+
+.rounded{
+    border-radius: 50px;
+}
+
 #fastest-lap{
     color: magenta;
 }
