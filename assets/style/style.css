@@ -22,6 +22,15 @@ img{
     height: 500px;
 }
 
+.team{
+    height: 45px;
+    background: none;
+}
+
+.margin-l-10{
+    margin-left: -25px;
+}
+
 #fastest-lap{
     color: magenta;
 }
