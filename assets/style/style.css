@@ -17,6 +17,13 @@ tr:nth-child(even) {
 
 }
 
+.pts{
+    background-color: gray; 
+    color: #fff; 
+    border-radius: 10px; 
+    font-size: smaller; 
+    padding: 2px;
+}
 
 .raceResult{
     margin-left: 55px;
@@ -27,10 +34,47 @@ tr:nth-child(even) {
     margin-top: -47px;
 }
 
-img{
+#track{
     height: 500px;
 }
 
+.small-card{
+    margin-top: 15px;
+    padding-top: 25px;
+    border-bottom: 2px solid gray;
+    border-right: 2px solid gray;
+    border-radius: 25px;
+}
+
+#renault{
+    margin: 10px;
+}
+
+#tauri{
+    height:350px;
+    margin: 10px;
+}
+
+#mclaren{
+    height: 250px;
+    margin-left: 10px;
+    margin-top: -50px;
+
+}
+
+#merc{
+    height: 200px;
+}
+
+#bwt{
+    height: 300px;
+    margin: 10px;
+}
+#haas{
+    margin-bottom: -93px;
+    margin-top: -93px;
+    height: 400px;
+}
 .team{
     height: 45px;
     background: none;
@@ -38,6 +82,14 @@ img{
 
 .margin-l-10{
     margin-left: -25px;
+}
+
+.margin-l-plus-10{
+    margin-left: 10px;
+}
+
+.team-stats{
+    margin-left: 209px;
 }
 
 .last-winner{

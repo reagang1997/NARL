@@ -16,7 +16,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
     crossorigin="anonymous"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <title>Race Information</title>
 </head>
 
@@ -66,8 +66,23 @@
                 </ul>
               </li>
               <li>
-                <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Race Results</a>
+                <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Team Pages</a>
                 <ul class="collapse list-unstyled" id="pageSubmenu2">
+                  <li><a href="teamPages/ferrari.html"><span class="fa fa-chevron-right mr-2"></span> Ferrari</a></li>
+                  <li><a href="teamPages/renault.html"><span class="fa fa-chevron-right mr-2"></span> Renault</a></li>
+                  <li><a href="teamPages/alfaromeo.html"><span class="fa fa-chevron-right mr-2"></span> Alfa Romeo</a></li>
+                  <li><a href="teamPages/alphatauri.html"><span class="fa fa-chevron-right mr-2"></span> Alpha Tauri</a></li>
+                  <li><a href="teamPages/redbull.html"><span class="fa fa-chevron-right mr-2"></span> Red Bull</a></li>
+                  <li><a href="teamPages/williams.html"><span class="fa fa-chevron-right mr-2"></span> Williams</a></li>
+                  <li><a href="teamPages/mercedes.html"><span class="fa fa-chevron-right mr-2"></span> Mercedes</a></li>
+                  <li><a href="teamPages/haas.html"><span class="fa fa-chevron-right mr-2"></span> HAAS</a></li>
+                  <li><a href="teamPages/racingpoint.html"><span class="fa fa-chevron-right mr-2"></span> Racing Point</a></li>
+                  <li><a href="teamPages/mclaren.html"><span class="fa fa-chevron-right mr-2"></span> McLaren</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Race Results</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu3">
                   <li><a href="raceResults.html"><span class="fa fa-chevron-right mr-2"></span> Season 1</a></li>
                   <li><a href="raceResults.html"><span class="fa fa-chevron-right mr-2"></span> Season 2</a></li>
                 </ul>
@@ -104,7 +119,7 @@
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <img src="assets/img/Bahrain_Circuit.png" alt="Bahrain Circut">
+                    <img id="track" src="assets/img/Bahrain_Circuit.png" alt="Bahrain Circut">
                   </div>
                 </div>
                 
