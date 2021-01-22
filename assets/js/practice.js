@@ -1,3 +1,8 @@
-var $practiceResult = $.getJSON("assets\\data\\cota\\2021_1_5_13_21_PRACTICE.json", function(result){
-   console.log(result.Results);
+$.ajax({
+   method: "GET",
+   url: "http://173.234.30.178:52161/lapstat"
+}).then(function (response) {
+
+
+   console.log(response)
 })

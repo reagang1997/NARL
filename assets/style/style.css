@@ -3,11 +3,20 @@ tr:nth-child(even) {
     background-color: #bebebe;
   }
 
+
+
 .accContainer{
     width: 75%;
     margin: auto;
     margin-top: 55px;
 }
+
+.construct{
+    margin-left: -100px;
+    width: 150px;
+
+}
+
 
 .raceResult{
     margin-left: 55px;
