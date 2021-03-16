@@ -1,74 +1,213 @@
-const MongoClient = require('mongodb').MongoClient;
-const express = require('express');
-const mongoose = require('mongoose');
-const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
+const express = require("express");
+const mongoose = require("mongoose");
+const raceResults = require('./models/RaceResult');
+const Teams = require('./models/Team');
+const WDC = require('./models/WDC');
+const WCC = require('./models/WCC');
+const Drivers = require('./models/Driver');
+const RaceHistory = require('./models/RaceResult');
+const fs = require('fs');
+const path = require('path');
+const cors = require('cors');
 
-async function main(){
-    /**
-     * Connection URI. Update <username>, <password>, and <your-cluster-url> to reflect your cluster.
-     * See https://docs.mongodb.com/ecosystem/drivers/node/ for more details
-     */
-    const uri = "mongodb+srv://reagan:reagan01@narl.onb9j.mongodb.net/NARLdb?retryWrites=true&w=majority";
- 
+const PORT = process.env.PORT || 8080;
 
-    const client = new MongoClient(uri);
- 
-    try {
-        // Connect to the MongoDB cluster
-        await client.connect();
-        console.log("Connected to NARLdb")
- 
-        // Make the appropriate DB calls
-        await  listDatabases(client);
- 
-    } catch (e) {
-        console.error(e);
-    } finally {
-        await client.close();
-    }
-}
 const app = express();
+
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors({
+  origin: ["http://localhost:8080", "http://localhost:3000"],
+  credentials: true
+}));
+app.use(express.static("public"));
 
-collection = database.collection("NARLdb");
-console.log(connection)
-main().catch(console.error);
-
-const Schema= mongoose.Schema;
-const ObjectId = Schema.Types.ObjectID;
-
-const driverSchema = new Schema({
-    name: String,
-    careerPoints: Number,
-    careerWins: Number,
-    careerPodiums: Number,
-    currentTeam: String,
-    WDC: Number,
-    WCC: Number
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/narl", {
+  useNewUrlParser: true,
+  useFindAndModify: false
 });
 
+// routes
 
-const driverModel = mongoose.model('driverModel', driverSchema );
+// get team by name
+app.get('/api/teams/:team', (req, res) => {
+  let team = req.params.team;
+  console.log(team);
+  if(team.includes('%20')){
+    team.split('%20');
+    team.join(" ")
+  }
+  Teams.findOne({ name: team })
+    .then(team => res.send(team));
+})
 
-//Create a User!
-app.post('/driver', async (req, res) => {
-    collection.insert(request.body, (error, result) => {
-        if(error) {
-            return response.status(500).send(error);
-        }
-        response.send(result.result);
-    });
+// get most recent race and add points
+app.get('/api/lastRace', (req, res) => {
+  const raceDir = __dirname + '/results/Race';
+  fs.readdir(raceDir, async (err, files) => {
+    const raceHistory = RaceHistory.find({});
+    files = files.sort();
+    const racePoints = [25, 18, 15, 12, 10, 8, 6, 4, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    files.forEach(async file => {
+      const fileInServer = await RaceHistory.findOne({ fileName: file });
+      if (fileInServer) {
+        console.log('file is in server');
+      }
+      else {
+        let rawdata = fs.readFileSync(path.resolve(raceDir, file));
+        rawdata = JSON.parse(rawdata);
+        const raceResults = rawdata.Result;
+        let updatedDriver;
+        let updatedTeam;
+        // populate race points
+        raceResults.forEach(async (driver, i) => {
+          let driverPoints = 0;
+          let driverCareerPoints = 0;
+          let foundDriver = await Drivers.findOne({ name: driver.DriverName });
+          if (i === 0) {
+            let driverCareerWins = 0;
+            let driverWins = 0;
+            driverPoints = foundDriver.points + racePoints[i];
+            driverCareerPoints = foundDriver.careerPoints + racePoints[i];
+            driverCareerWins = foundDriver.careerWins + 1;
+            driverWins = foundDriver.wins + 1;
+
+            updatedDriver = await Drivers.findOneAndUpdate({ name: driver.DriverName },
+              {
+                $inc: {
+                  points: racePoints[i],
+                  wins: 1,
+                  careerPoints: racePoints[i],
+                  careerWins: 1
+                }
+              })
+            updatedTeam = await Teams.findOneAndUpdate({ name: foundDriver.team },
+              {
+                $inc:
+                {
+                  points: racePoints[i],
+                  wins: 1,
+                  historyPoints: racePoints[i],
+                  historyWins: 1
+                }
+              });
+          }
+          else {
+            updatedDriver = await Drivers.findOneAndUpdate({ name: driver.DriverName }, { $inc: { points: racePoints[i], careerPoints: racePoints[i] } })
+            updatedTeam = await Teams.findOneAndUpdate({ name: foundDriver.team },
+              {
+                $inc:
+                {
+                  points: racePoints[i],
+                  historyPoints: racePoints[i],
+                }
+              });
+          }
+
+        })
+        const laps = rawdata.Laps;
+        let fastestLap = 99999999999999;
+        let fastestDriver = "";
+        let fd;
+        laps.forEach(async (lap, i) => {
+          if (lap.LapTime < fastestLap) {
+            fastestLap = lap.LapTime;
+            fastestDriver = lap.DriverName;
+          }
+        })
+        console.log(fastestDriver)
+        //fd = fastestDriver
+        let driver = await Drivers.findOne({ name: fastestDriver });
+        console.log(driver);
+        updatedDriver = await Drivers.findOneAndUpdate({ name: fastestDriver }, { $inc: { fastestLaps: 1, careerFastestLaps: 1 } });
+        updatedTeam = await Teams.findOneAndUpdate({ name: driver.team }, { $inc: { fastestLaps: 1, historyFastestLaps: 1 } });
+
+      }
+      const newRace = { fileName: file };
+      const newEntry = RaceHistory.create(newRace);
+    })
+
+  })
+
 })
 
 
 
+app.get('/api/raceResults', (req, res) => {
+  raceResults.find({})
+    .then(races => res.send(races));
+})
 
-async function listDatabases(client){
-    databasesList = await client.db().admin().listDatabases();
- 
-    console.log("Databases:");
-    databasesList.databases.forEach(db => console.log(` - ${db.name}`));
-};
+// get driver championship data
+app.get('/api/WDC', async (req, res) => {
+  const driverChamp = await WDC.find({});
 
-app.listen(8080);
+  driverChamp.forEach(async driver => {
+    const driverStats = await Drivers.findOne({ name: driver.name });
+
+    const updatedDriverChamp = await WDC.findOneAndUpdate({ name: driver.name }, { $set: { points: driverStats.points, wins: driverStats.wins, fastestLaps: driverStats.fastestLaps } });
+  })
+
+  const wdcToSend = await WDC.find({}).sort({ points: -1 });
+
+  res.send(wdcToSend);
+})
+
+// get constructor champioship data
+app.get('/api/WCC', async (req, res) => {
+
+  const cChamp = await WCC.find({});
+
+
+  cChamp.forEach(async team => {
+    let teamStats = await Teams.findOne({ name: team.team });
+    let updatedWCC = await WCC.findOneAndUpdate({team: teamStats.name}, {$set: {
+      points: teamStats.points,
+      wins: teamStats.wins,
+      fastestLaps: teamStats.fastestLaps
+    }})
+  })
+
+  const wccToSend = await WCC.find({}).sort({'points': -1});
+  res.send(wccToSend);
+
+})
+
+//get all drivers 
+
+// append each driver to their teams driver array
+app.put('/api/populateTeamDrivers', async (req, res) => {
+  const drivers = await Drivers.find({});
+
+  let driverCount = 0;
+  drivers.forEach(async (driver, i) => {
+    const team = await Teams.findOne({ name: driver.team });
+
+    if (team.drivers.indexOf(driver.name) === -1) {
+      const updatedTeam = await Teams.findOneAndUpdate({ _id: team._id }, { $push: { drivers: driver.name } }, { new: true });
+    }
+    driverCount += 1;
+    //const updatedDriver = await Drivers.findByIdAndUpdate(driver._id, {$push: {teamHistory: _id}}, {new: true});
+    //console.log(updatedDriver);
+  })
+
+})
+
+// set team constructor points 
+app.put('/api/setConstructors', async (req, res) => {
+  const teams = await Teams.find({});
+  const wccStandings = await WCC.find({});
+
+  teams.forEach(async (team) => {
+    team.drivers.forEach(async (driverName) => {
+      const driver = await Drivers.findOne({ name: driverName });
+      const updatedConstruct = await Teams.findOneAndUpdate({ name: driver.team }, {})
+    })
+  })
+})
+
+
+
+app.listen(PORT, () => {
+  console.log(`App running on port ${PORT}!`);
+});
